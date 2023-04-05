@@ -1,26 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace GreenMountain.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateTrails : Migration
+    public partial class createTrails : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TRAILS",
+                name: "trails",
                 columns: table => new
                 {
-                    ID = table.Column<string>(type: "text", nullable: false),
-                    NAME = table.Column<string>(type: "text", nullable: false),
-                    RATING = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "text", nullable: false),
+                    rating = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TRAILS", x => x.ID);
+                    table.PrimaryKey("pk_trails", x => x.id);
                 });
         }
 
@@ -28,7 +30,7 @@ namespace GreenMountain.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TRAILS");
+                name: "trails");
         }
     }
 }

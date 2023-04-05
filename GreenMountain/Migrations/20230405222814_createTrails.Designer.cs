@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GreenMountain.Migrations
 {
     [DbContext(typeof(GreenMountainContext))]
-    [Migration("20230405210433_CreateTrails")]
-    partial class CreateTrails
+    [Migration("20230405222814_createTrails")]
+    partial class createTrails
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,23 +26,26 @@ namespace GreenMountain.Migrations
 
             modelBuilder.Entity("GreenMountain.Models.Trail", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text")
-                        .HasColumnName("ID");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("NAME");
+                        .HasColumnName("name");
 
                     b.Property<int>("Rating")
                         .HasColumnType("integer")
-                        .HasColumnName("RATING");
+                        .HasColumnName("rating");
 
                     b.HasKey("Id")
-                        .HasName("PK_TRAILS");
+                        .HasName("pk_trails");
 
-                    b.ToTable("TRAILS", (string)null);
+                    b.ToTable("trails", (string)null);
                 });
 #pragma warning restore 612, 618
         }

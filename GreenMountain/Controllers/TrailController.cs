@@ -16,8 +16,9 @@ namespace GreenMountain.Controllers
         // GET: /Trail/
         public IActionResult Index()
         {
-            Console.WriteLine(_context.Trails);
-            return View();
+            var trails = _context.Trails;
+            //Console.WriteLine(_context.Trails);
+            return View(trails);
         }
     }
 }
