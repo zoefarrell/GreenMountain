@@ -4,6 +4,7 @@ namespace GreenMountain.Controllers
 {
     public class TrailController : Controller
     {
+        // GET: /Trail/
         public IActionResult Index()
         {
             return View();
