@@ -8,7 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddEntityFrameworkNpgsql()
     .AddDbContext<GreenMountainContext>(opt => 
-    opt.UseNpgsql(builder.Configuration.GetConnectionString("GreenMountainDb")));
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("GreenMountainDb")).UseUpperSnakeCaseNamingConvention());
 
 var app = builder.Build();
 
