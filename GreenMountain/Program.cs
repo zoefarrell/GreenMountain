@@ -1,7 +1,14 @@
+using GreenMountain.DataAccess;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddEntityFrameworkNpgsql()
+    .AddDbContext<GreenMountainContext>(opt => 
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("GreenMountainDb")));
 
 var app = builder.Build();
 
