@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GreenMountain.DataAccess;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GreenMountain.Controllers
 {
-    public class TrailController : Controller
-    {
+    public class TrailController : Controller { 
+
+        private readonly GreenMountainContext _context;
+
+        public TrailController(GreenMountainContext context)
+        {
+            _context = context;
+        }
+    
         // GET: /Trail/
         public IActionResult Index()
         {
+            Console.WriteLine(_context.Trails);
             return View();
         }
     }
